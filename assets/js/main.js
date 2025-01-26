@@ -17,10 +17,12 @@
       // === logo change
       if (ud_header.classList.contains("sticky")) {
         document.querySelector(".header-logo").src =
-          "assets/images/logo/logo.svg"
+          //"assets/images/logo/logo.svg"
+          "assets/images/logo/zetamind-logo.png"
       } else {
         document.querySelector(".header-logo").src =
-          "assets/images/logo/logo-white.svg"
+          //"assets/images/logo/logo-white.svg"
+          "assets/images/logo/zetamind-logo-white.png"
       }
     }
 
@@ -29,7 +31,8 @@
         // === logo change
         if (ud_header.classList.contains("sticky")) {
           document.querySelector(".header-logo").src =
-            "assets/images/logo/logo-white.svg"
+            //"assets/images/logo/logo-white.svg"
+            "assets/images/logo/zetamind-logo-white.png"
         } 
       }
     }
