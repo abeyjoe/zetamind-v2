@@ -69,11 +69,11 @@
                   </a>
                   <div
                     class="submenu relative left-0 top-full hidden w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark-2 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
-                    <a href="microsoft-dynamics.html"
+                    <a href="microsoft-dynamics-365.html"
                       class="block rounded px-4 py-[10px] text-sm text-body-color hover:text-primary dark:text-dark-6 dark:hover:text-primary">
                       Microsoft Dynamics 365
                     </a>
-                    <a href="#"
+                    <a href="business-central.html"
                       class="block rounded px-4 py-[10px] text-sm text-body-color hover:text-primary dark:text-dark-6 dark:hover:text-primary">
                       Business Central
                     </a>
@@ -1265,7 +1265,7 @@
   </section>
   <!-- ====== Testimonial Section End -->
 
-  <!-- ====== FAQ Section Start -->
+  <!-- ====== FAQ Section Start Old -->
   <section class="relative z-20 overflow-hidden bg-white pb-8 pt-20 dark:bg-dark lg:pb-[50px] lg:pt-[120px]">
     <div class="container mx-auto">
       <div class="-mx-4 flex flex-wrap">
@@ -1469,79 +1469,64 @@
       </span>
     </div>
   </section>
-  <!-- ====== FAQ Section End -->
+  <!-- ====== FAQ Section End Old -->
 
-  
-  <!-- ==== FAQ Start ==== -->
-  <div class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen">
-    <section class="max-w-2xl w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
-        <h2 class="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-gray-100">Frequently Asked Questions</h2>
-        <div class="space-y-4">
-            <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
-                <button class="w-full text-left flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(0)">
-                    What's the best thing about Switzerland?
-                    <span class="toggle-icon">+</span>
-                </button>
-                <p class="text-gray-600 dark:text-gray-300 mt-2 hidden">I don't know, but the flag is a big plus!</p>
-            </div>
-            <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
-                <button class="w-full text-left flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(1)">
-                    How do you make holy water?
-                    <span class="toggle-icon">+</span>
-                </button>
-                <p class="text-gray-600 dark:text-gray-300 mt-2 hidden">You boil the hell out of it.</p>
-            </div>
-            <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
-                <button class="w-full text-left flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(2)">
-                    What do you call someone with no body and no nose?
-                    <span class="toggle-icon">+</span>
-                </button>
-                <p class="text-gray-600 dark:text-gray-300 mt-2 hidden">Nobody knows.</p>
-            </div>
-            <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
-                <button class="w-full text-left flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(3)">
-                    Why do you never see elephants hiding in trees?
-                    <span class="toggle-icon">+</span>
-                </button>
-                <p class="text-gray-600 dark:text-gray-300 mt-2 hidden">Because they're so good at it.</p>
-            </div>
-            <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
-                <button class="w-full text-left flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(4)">
-                    Why can't you hear a pterodactyl go to the bathroom?
-                    <span class="toggle-icon">+</span>
-                </button>
-                <p class="text-gray-600 dark:text-gray-300 mt-2 hidden">Because the 'P' is silent.</p>
-            </div>
-            <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
-                <button class="w-full text-left flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(5)">
-                    Why did the invisible man turn down the job offer?
-                    <span class="toggle-icon">+</span>
-                </button>
-                <p class="text-gray-600 dark:text-gray-300 mt-2 hidden">He couldn't see himself doing it.</p>
-            </div>
+    <!-- ====== FAQ Section Start -->
+    <section class="w-full bg-white dark:bg-dark text-dark dark:text-white shadow-lg rounded-lg p-6">
+      <h2 class="text-4xl font-bold text-center mb-6 text-dark dark:text-white">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+          <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
+              <button class="w-full flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(this)">
+                What services does Zetamind Consulting Limited provide?
+                  <span class="toggle-icon">+</span>
+              </button>
+              <p class="text-dark dark:text-white dark:text-gray-300 mt-2 hidden">We specialize in digital transformation solutions, including Microsoft Dynamics 365, Power Platform,
+                Azure Cloud, and ERP system implementation.</p>
+          </div>
+          <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
+              <button class="w-full flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(this)">
+                Why should I choose Zetamind Consulting Limited for my digital transformation needs?
+                  <span class="toggle-icon">+</span>
+              </button>
+              <p class="text-dark dark:text-white dark:text-gray-300 mt-2 hidden">As a certified Microsoft Partner, we offer expertise, tailored solutions, and end-to-end support to
+                align technology with your business goals.</p>
+          </div>
+          <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
+            <button class="w-full flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(this)">
+              What industries do you serve?
+                <span class="toggle-icon">+</span>
+            </button>
+            <p class="text-dark dark:text-white dark:text-gray-300 mt-2 hidden">We cater to various industries, including finance, retail, manufacturing, healthcare, and more, helping
+              businesses across all sectors thrive.</p>
+          </div>
+          <div class="border-b border-gray-300 dark:border-gray-600 pb-2">
+            <button class="w-full flex justify-between items-center py-3 text-lg font-medium text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300" onclick="toggleFAQ(this)">
+              Can Zetamind Consulting help my business migrate to the cloud?
+                <span class="toggle-icon">+</span>
+            </button>
+            <p class="text-dark dark:text-white dark:text-gray-300 mt-2 hidden">Yes, we offer seamless cloud migration services using Microsoft Azure to ensure scalability, security,
+              and flexibility for your business.</p>
         </div>
-    </section>
-    <script>
-        function toggleFAQ(index) {
-            const answers = document.querySelectorAll('p');
-            const icons = document.querySelectorAll('.toggle-icon');
-            
-            answers.forEach((answer, i) => {
-                if (i === index) {
-                    answer.classList.toggle('hidden');
-                    icons[i].textContent = answer.classList.contains('hidden') ? '+' : '-';
-                } else {
-                    answer.classList.add('hidden');
-                    icons[i].textContent = '+';
-                }
-            });
-        }
-    </script>
-</div>
-<!-- ==== FAQ End ==== -->
+      </div>
+  </section>
 
+  <script>
+      function toggleFAQ(button) {
+          const answer = button.nextElementSibling;
+          const icon = button.querySelector('.toggle-icon');
 
-
+          if (answer.classList.contains('hidden')) {
+              document.querySelectorAll('p').forEach(p => p.classList.add('hidden'));
+              document.querySelectorAll('.toggle-icon').forEach(i => i.textContent = '+');
+              answer.classList.remove('hidden');
+              icon.textContent = '-';
+          } else {
+              answer.classList.add('hidden');
+              icon.textContent = '+';
+          }
+      }
+  </script>
+<!-- ====== FAQ Section End -->
 
   <!-- ====== Team Section Start -->
   <!--
