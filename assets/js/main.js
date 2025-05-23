@@ -159,3 +159,25 @@
   themeCheck();
   /* ========  themeSwitcher End ========= */
 })();
+
+/* Nested Sub-menu start */
+document.querySelectorAll('.toggle-dropdown').forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault();
+    const submenuId = button.getAttribute('aria-controls');
+    const submenu = document.getElementById(submenuId);
+
+    if (!submenu) return;
+
+    // Toggle hidden class
+    const isHidden = submenu.classList.contains('hidden');
+    if (isHidden) {
+      submenu.classList.remove('hidden');
+      button.setAttribute('aria-expanded', 'true');
+    } else {
+      submenu.classList.add('hidden');
+      button.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+/* Nested Sub-menu end */
