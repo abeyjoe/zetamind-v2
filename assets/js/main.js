@@ -1,95 +1,46 @@
 (function () {
   "use strict";
 
-  // ======= Sticky
-  window.onscroll = function () {
-    const ud_header = document.querySelector(".ud-header");
-    const sticky = ud_header.offsetTop;
-    const logo = document.querySelectorAll(".header-logo");
+  const header = document.querySelector(".ud-header");
+  const logo = document.querySelector(".header-logo");
+  const backToTop = document.querySelector(".back-to-top");
+  const navbarToggler = document.querySelector("#navbarToggler");
+  const navbarCollapse = document.querySelector("#navbarCollapse");
+  const themeSwitcher = document.getElementById("themeSwitcher");
 
-    if (window.pageYOffset > sticky) {
-      ud_header.classList.add("sticky");
-    } else {
-      ud_header.classList.remove("sticky");
-    }
+  // ========= Sticky Scroll Handler =========
+  const handleScroll = () => {
+    const isDark = document.documentElement.classList.contains("dark");
 
-    if(logo.length) {
-      // === logo change
-      if (ud_header.classList.contains("sticky")) {
-        document.querySelector(".header-logo").src =
-          //"assets/images/logo/logo.svg"
-          "assets/images/logo/zetamind-logo.png"
-      } else {
-        document.querySelector(".header-logo").src =
-          //"assets/images/logo/logo-white.svg"
-          "assets/images/logo/zetamind-logo-white.png"
-      }
-    }
+    header.classList.add("sticky"); // Always apply sticky styles
 
-    if (document.documentElement.classList.contains("dark")) {
-      if(logo.length) {
-        // === logo change
-        if (ud_header.classList.contains("sticky")) {
-          document.querySelector(".header-logo").src =
-            //"assets/images/logo/logo-white.svg"
-            "assets/images/logo/zetamind-logo-white.png"
-        } 
-      }
-    }
-
-    // show or hide the back-top-top button
-    const backToTop = document.querySelector(".back-to-top");
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
+    // Back to top
+    if (window.scrollY > 50) {
       backToTop.style.display = "flex";
     } else {
       backToTop.style.display = "none";
     }
+
+    // Logo update
+    if (logo) {
+      if (window.scrollY > 0) {
+        logo.src = "assets/images/logo/zetamind-logo.png";
+      } else {
+        logo.src = isDark
+          ? "assets/images/logo/zetamind-logo-white.png"
+          : "assets/images/logo/zetamind-logo.png";
+      }
+    }
   };
 
-  // ===== responsive navbar
-  let navbarToggler = document.querySelector("#navbarToggler");
-  const navbarCollapse = document.querySelector("#navbarCollapse");
-
-  navbarToggler.addEventListener("click", () => {
-    navbarToggler.classList.toggle("navbarTogglerActive");
-    navbarCollapse.classList.toggle("hidden");
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("load", () => {
+    handleScroll(); // Apply correct styles on load
+    checkTheme();   // Ensure dark/light mode on initial load
   });
 
-  //===== close navbar-collapse when a  clicked
-  document
-    .querySelectorAll("#navbarCollapse ul li:not(.submenu-item) a")
-    .forEach((e) =>
-      e.addEventListener("click", () => {
-        navbarToggler.classList.remove("navbarTogglerActive");
-        navbarCollapse.classList.add("hidden");
-      })
-    );
-
-  // ===== Sub-menu
-  const submenuItems = document.querySelectorAll(".submenu-item");
-  submenuItems.forEach((el) => {
-    el.querySelector("a").addEventListener("click", () => {
-      el.querySelector(".submenu").classList.toggle("hidden");
-    });
-  });
-
-  // ===== Faq accordion
-  const faqs = document.querySelectorAll(".single-faq");
-  faqs.forEach((el) => {
-    el.querySelector(".faq-btn").addEventListener("click", () => {
-      el.querySelector(".icon").classList.toggle("rotate-180");
-      el.querySelector(".faq-content").classList.toggle("hidden");
-    });
-  });
-
-  // ===== wow js
-  new WOW().init();
-
-  // ====== scroll top js
-  function scrollTo(element, to = 0, duration = 500) {
+  // ========= Scroll To Top =========
+  function scrollToTop(element, to = 0, duration = 500) {
     const start = element.scrollTop;
     const change = to - start;
     const increment = 20;
@@ -97,14 +48,9 @@
 
     const animateScroll = () => {
       currentTime += increment;
-
       const val = Math.easeInOutQuad(currentTime, start, change, duration);
-
       element.scrollTop = val;
-
-      if (currentTime < duration) {
-        setTimeout(animateScroll, increment);
-      }
+      if (currentTime < duration) setTimeout(animateScroll, increment);
     };
 
     animateScroll();
@@ -117,67 +63,85 @@
     return (-c / 2) * (t * (t - 2) - 1) + b;
   };
 
-  document.querySelector(".back-to-top").onclick = () => {
-    scrollTo(document.documentElement);
-  };
+  if (backToTop) {
+    backToTop.onclick = () => scrollToTop(document.documentElement);
+  }
 
-    /* ========  themeSwitcher start ========= */
+  // ========= Mobile Menu =========
+  if (navbarToggler && navbarCollapse) {
+    navbarToggler.addEventListener("click", () => {
+      navbarToggler.classList.toggle("navbarTogglerActive");
+      navbarCollapse.classList.toggle("hidden");
+    });
 
-  // themeSwitcher
-  const themeSwitcher = document.getElementById('themeSwitcher');
+    document
+      .querySelectorAll("#navbarCollapse ul li:not(.submenu-item) a")
+      .forEach((e) =>
+        e.addEventListener("click", () => {
+          navbarToggler.classList.remove("navbarTogglerActive");
+          navbarCollapse.classList.add("hidden");
+        })
+      );
+  }
 
-  // Theme Vars
-  const userTheme = localStorage.getItem('theme');
-  const systemTheme = window.matchMedia('(prefers-color0scheme: dark)').matches;
+  // ========= Submenus =========
+  document.querySelectorAll(".submenu-item a").forEach((link) => {
+    link.addEventListener("click", () => {
+      const submenu = link.nextElementSibling;
+      if (submenu) submenu.classList.toggle("hidden");
+    });
+  });
 
-  // Initial Theme Check
-  const themeCheck = () => {
-    if (userTheme === 'dark' || (!userTheme && systemTheme)) {
-      document.documentElement.classList.add('dark');
-      return;
-    }
-  };
+  // ========= Nested Dropdowns =========
+  document.querySelectorAll(".toggle-dropdown").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const submenuId = button.getAttribute("aria-controls");
+      const submenu = document.getElementById(submenuId);
 
-  // Manual Theme Switch
+      if (!submenu) return;
+
+      const isHidden = submenu.classList.contains("hidden");
+      submenu.classList.toggle("hidden");
+      button.setAttribute("aria-expanded", !isHidden);
+    });
+  });
+
+  // ========= FAQ Accordion =========
+  document.querySelectorAll(".single-faq").forEach((faq) => {
+    faq.querySelector(".faq-btn").addEventListener("click", () => {
+      faq.querySelector(".icon").classList.toggle("rotate-180");
+      faq.querySelector(".faq-content").classList.toggle("hidden");
+    });
+  });
+
+  // ========= WOW.js =========
+  new WOW().init();
+
+  // ========= Theme Switcher =========
   const themeSwitch = () => {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      return;
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     }
-
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+    handleScroll(); // Update logo based on theme
   };
 
-  // call theme switch on clicking buttons
-  themeSwitcher.addEventListener('click', () => {
-    themeSwitch();
-  });
+  const checkTheme = () => {
+    const userTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  // invoke theme check on initial load
-  themeCheck();
-  /* ========  themeSwitcher End ========= */
-})();
-
-/* Nested Sub-menu start */
-document.querySelectorAll('.toggle-dropdown').forEach(button => {
-  button.addEventListener('click', e => {
-    e.preventDefault();
-    const submenuId = button.getAttribute('aria-controls');
-    const submenu = document.getElementById(submenuId);
-
-    if (!submenu) return;
-
-    // Toggle hidden class
-    const isHidden = submenu.classList.contains('hidden');
-    if (isHidden) {
-      submenu.classList.remove('hidden');
-      button.setAttribute('aria-expanded', 'true');
+    if (userTheme === "dark" || (!userTheme && systemPrefersDark)) {
+      document.documentElement.classList.add("dark");
     } else {
-      submenu.classList.add('hidden');
-      button.setAttribute('aria-expanded', 'false');
+      document.documentElement.classList.remove("dark");
     }
-  });
-});
-/* Nested Sub-menu end */
+  };
+
+  if (themeSwitcher) {
+    themeSwitcher.addEventListener("click", themeSwitch);
+  }
+})();
